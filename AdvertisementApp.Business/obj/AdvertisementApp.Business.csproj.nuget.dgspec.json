@@ -35,6 +35,9 @@
               "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.DataAccess\\AdvertisementApp.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.DataAccess\\AdvertisementApp.DataAccess.csproj"
               },
+              "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {
+                "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj"
+              },
               "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Entities\\AdvertisementApp.Entities.csproj": {
                 "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Entities\\AdvertisementApp.Entities.csproj"
               }
@@ -56,6 +59,16 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.1.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -135,6 +148,71 @@
               "version": "[9.0.*, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
+        "projectName": "AdvertisementApp.Dtos",
+        "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
+        "packagesPath": "C:\\Users\\BERA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BERA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
           "imports": [
             "net461",
             "net462",
