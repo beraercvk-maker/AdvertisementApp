@@ -4,6 +4,7 @@
     <ProjectReference Include="..\AdvertisementApp.Entities\AdvertisementApp.Entities.csproj" />
     <ProjectReference Include="..\AdvertisementApp.DataAccess\AdvertisementApp.DataAccess.csproj" />
     <ProjectReference Include="..\AdvertisementApp.Dtos\AdvertisementApp.Dtos.csproj" />
+    <ProjectReference Include="..\AdvertisementApp.Common\AdvertisementApp.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

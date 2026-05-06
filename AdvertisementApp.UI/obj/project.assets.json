@@ -1587,6 +1587,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "AdvertisementApp.Common": "1.0.0",
           "AdvertisementApp.DataAccess": "1.0.0",
           "AdvertisementApp.Dtos": "1.0.0",
           "AdvertisementApp.Entities": "1.0.0",
@@ -1598,6 +1599,16 @@
         },
         "runtime": {
           "bin/placeholder/AdvertisementApp.Business.dll": {}
+        }
+      },
+      "AdvertisementApp.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/AdvertisementApp.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AdvertisementApp.Common.dll": {}
         }
       },
       "AdvertisementApp.DataAccess/1.0.0": {
@@ -4524,6 +4535,11 @@
       "type": "project",
       "path": "../AdvertisementApp.Business/AdvertisementApp.Business.csproj",
       "msbuildProject": "../AdvertisementApp.Business/AdvertisementApp.Business.csproj"
+    },
+    "AdvertisementApp.Common/1.0.0": {
+      "type": "project",
+      "path": "../AdvertisementApp.Common/AdvertisementApp.Common.csproj",
+      "msbuildProject": "../AdvertisementApp.Common/AdvertisementApp.Common.csproj"
     },
     "AdvertisementApp.DataAccess/1.0.0": {
       "type": "project",
