@@ -1,3 +1,6 @@
+using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Business.Mappings.AutoMapper;
+using AdvertisementApp.Business.Services;
 using AdvertisementApp.Business.ValidationRules;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.Interfaces;
@@ -23,12 +26,14 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             // Unit of Work bağlantımız
             services.AddScoped<IUow, Uow>();
             
-            // Not: AutoMapper ayarını buradan sildik çünkü onu UI (Program.cs) katmanına taşıdık!
-            services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>(); // Validatörlerimizi ekliyoruz
-            services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>(); // Diğer validatörler de benzer şekilde eklenebilir
+            // Validatörleri otomatik tarayarak ekliyoruz (Tek tek AddTransient yazmaya gerek kalmadı!)
             services.AddValidatorsFromAssembly(typeof(DependencyExtension).Assembly);
+            
+            // AutoMapper kaydı (AutoMapper 16+ kurallarına uygun güncel hali)
+            services.AddAutoMapper(cfg => { }, typeof(ProvidedServiceProfile).Assembly); 
+
+            // Servislerimizi ekliyoruz
+            services.AddScoped<IProvidedServiceService, ProvidedServiceService>(); 
         }    
     }
-
-   
 }

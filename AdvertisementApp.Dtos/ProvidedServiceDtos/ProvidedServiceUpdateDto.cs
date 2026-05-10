@@ -1,8 +1,10 @@
+using AdvertisementApp.Dtos.Interfaces;
+
 namespace AdvertisementApp.Dtos.ProvidedServiceDtos
 
 {
 
-   public class ProvidedServiceUpdateDto : IDto
+   public class ProvidedServiceUpdateDto : IUpdateDto
     {
         public int Id { get; set; } // Güncelleme işlemi için ID gereklidir
         public string Title { get; set; }

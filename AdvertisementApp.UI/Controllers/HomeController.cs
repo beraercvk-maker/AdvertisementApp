@@ -1,31 +1,27 @@
-using System.Diagnostics;
+using AdvertisementApp.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using AdvertisementApp.UI.Models;
+using System.Threading.Tasks;
 
-namespace AdvertisementApp.UI.Controllers;
-
-public class HomeController : Controller
+namespace AdvertisementApp.UI.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly IProvidedServiceService _providedServiceService;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        // Constructor Injection ile servisimizi istiyoruz
+        public HomeController(IProvidedServiceService providedServiceService)
+        {
+            _providedServiceService = providedServiceService;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        // Metodu asenkron (async Task) yapıyoruz çünkü veritabanından veri bekleyeceğiz
+        public async Task<IActionResult> Index()
+        {
+            // Servisimizden tüm hizmetleri çekiyoruz
+            var response = await _providedServiceService.GetAllAsync();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+         
+            return View(response.Data); // View'e sadece veriyi gönderiyoruz, response'un tamamını değil
+        }
     }
 }

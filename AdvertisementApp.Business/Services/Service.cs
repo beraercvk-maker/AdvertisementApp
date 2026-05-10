@@ -3,6 +3,7 @@ using AdvertisementApp.Business.Interfaces;
 using AdvertisementApp.Common;
 using AdvertisementApp.DataAccess.Interfaces;
 using AdvertisementApp.Dtos;
+using AdvertisementApp.Dtos.Interfaces;
 using AdvertisementApp.Entities;
 using AutoMapper;
 using FluentValidation;
@@ -13,7 +14,7 @@ namespace AdvertisementApp.Business.Services
 {
     public class Service<CreateDto, UpdateDto, ListDto, T> : IService<CreateDto, UpdateDto, ListDto, T>
         where CreateDto : class, IDto, new()
-        where UpdateDto : class, IDto, new()
+        where UpdateDto : class, IUpdateDto, new()
         where ListDto : class, IDto, new()
         where T : BaseEntity, new()
     {
@@ -30,7 +31,7 @@ namespace AdvertisementApp.Business.Services
             _uow = uow;
         }
 
-        public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
+        public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto) // async yapıya çevrildi ve bu metodun dönüş tipi Task<IResponse<CreateDto>> olarak değiştirildi
         {
             var result = _createValidator.Validate(dto);
 
@@ -52,8 +53,8 @@ namespace AdvertisementApp.Business.Services
         // async ve await kullanılarak performanslı hale getirildi
         public async Task<IResponse<List<ListDto>>> GetAllAsync()
         {
-            var data = await _uow.GetRepository<T>().GetAllAsync(); 
-            var dto = _mapper.Map<List<ListDto>>(data); 
+            var data = await _uow.GetRepository<T>().GetAllAsync(); // Veritabanından tüm verileri asenkron olarak çekiyoruz
+            var dto = _mapper.Map<List<ListDto>>(data); // Veritabanından gelen verileri ListDto'ya dönüştürüyoruz
             return new Response<List<ListDto>>(ResponseType.Success, dto); 
         }
 
@@ -94,10 +95,15 @@ namespace AdvertisementApp.Business.Services
             
             if (result.IsValid) 
             {
-                var entity = _mapper.Map<T>(dto);  // DTO'dan Entity'e dönüştürme
-                _uow.GetRepository<T>().Update(entity); // Veritabanında güncelleme işlemi
+                var unchangedData =await _uow.GetRepository<T>().FindAsync(dto.Id);  // DTO'dan Entity'e dönüştürme
+                if (unchangedData == null)
+                {
+                    return new Response<UpdateDto>(ResponseType.NotFound, $"Id'si {dto.Id} olan veri bulunamadı.");
+                }
+                _mapper.Map(dto, unchangedData); // DTO'daki verileri mevcut Entity'ye kopyala
+                _uow.GetRepository<T>().Update(unchangedData); // Veritabanında güncelleme işlemi
                 await _uow.SaveChangesAsync(); // SaveChangesAsync yapıldı
-                var responseDto = _mapper.Map<UpdateDto>(entity); 
+                var responseDto = _mapper.Map<UpdateDto>(unchangedData); 
 
                 return new Response<UpdateDto>(ResponseType.Success, responseDto);
             }
