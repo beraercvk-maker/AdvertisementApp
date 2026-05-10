@@ -21,7 +21,15 @@ namespace AdvertisementApp.UI.Controllers
             var response = await _providedServiceService.GetAllAsync();
 
          
-            return View(response.Data); // View'e sadece veriyi gönderiyoruz, response'un tamamını değil
+            return View(response.Data); // View'e sadece Data kısmını gönderiyoruz, böylece ViewModel'imiz daha temiz olur
         }
+
+        public IActionResult HumanResources()
+        {
+            return View();
+        }
+
+
+
     }
 }

@@ -1,161 +1,79 @@
 ﻿@model List<AdvertisementApp.Dtos.ProvidedServiceDtos.ProvidedServiceListDto>
 
-<style>
-    /* --- SAYFA BAŞLIĞI --- */
-    .page-header {
-        text-align: center;
-        margin-bottom: 50px;
-        padding-top: 20px;
-    }
+<section class="px-margin-mobile md:px-margin-tablet lg:px-margin-desktop max-w-container-max mx-auto py-20 text-center">
+    <h1 class="font-display-hero text-headline-lg-mobile md:text-display-hero tracking-tighter mb-8 bg-gradient-to-r from-on-surface to-outline-variant bg-clip-text text-transparent">
+        CRAFTING<br/>NEW REALITIES
+    </h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+        We blend high-end visual aesthetics with data-driven strategic thinking to propel brands into the digital stratosphere.
+    </p>
+</section>
 
-    .page-title {
-        font-size: 3em;
-        font-weight: 900;
-        margin-bottom: 10px;
-        /* MINT GROWTH GRADIENT TEXT */
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-    }
-
-    .page-subtitle {
-        color: #7f8c8d;
-        font-size: 1.2em;
-    }
-
-    /* --- IZGARA YAPISI --- */
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 35px;
-    }
-
-    /* --- KART TASARIMI --- */
-    .service-card {
-        background: white;
-        border-radius: 20px;
-        padding: 35px 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 1px solid rgba(0,0,0,0.02);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        z-index: 1;
-    }
-
-    .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, #11998e, #38ef7d);
-        transition: height 0.3s ease;
-        z-index: -1;
-    }
-
-    .service-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 20px 40px rgba(17, 153, 142, 0.15);
-    }
-
-    .service-card:hover::before {
-        height: 100%;
-        opacity: 0.05;
-    }
-
-    .service-icon-placeholder {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, rgba(17, 153, 142, 0.1), rgba(56, 239, 125, 0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        color: #11998e;
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-
-    /* --- BOŞ SAYFA TASARIMI --- */
-    .empty-state {
-        text-align: center;
-        padding: 70px 30px;
-        background: white;
-        border-radius: 24px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.03);
-        max-width: 650px;
-        margin: 20px auto;
-        border: 2px dashed #dfe6e9;
-    }
-
-    .floating-emoji {
-        font-size: 4em;
-        display: inline-block;
-        margin-bottom: 15px;
-        animation: float 3s ease-in-out infinite;
-    }
-
-    @@keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0px); }
-    }
-
-    /* --- BUTON TASARIMI --- */
-    .btn-add {
-        display: inline-block;
-        padding: 15px 35px;
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.1em;
-        border-radius: 50px;
-        box-shadow: 0 10px 20px rgba(17, 153, 142, 0.3);
-        transition: all 0.3s ease;
-    }
-
-    .btn-add:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 15px 25px rgba(17, 153, 142, 0.4);
-        color: white;
-    }
-</style>
-
-<div class="page-header">
-    <h2 class="page-title">Sunduğumuz Hizmetler</h2>
-    <p class="page-subtitle">Şirketinizin büyümesine yardımcı olacak çözümler.</p>
-</div>
-
-@if (Model != null && Model.Count > 0)
-{
-    <div class="services-grid">
-        @foreach (var item in Model)
+<section class="px-margin-mobile md:px-margin-tablet lg:px-margin-desktop max-w-container-max mx-auto pb-section-gap">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+        
+        @if (Model != null && Model.Count > 0)
         {
-            <div class="service-card">
-                <div class="service-icon-placeholder">
-                    @(item.ImagePath ?? item.Title.Substring(0,1).ToUpper())
+            foreach (var item in Model)
+            {
+                <div class="glass-card rounded-xl p-8 flex flex-col justify-between group h-[400px]">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-6 group-hover:bg-tertiary/20 transition-colors">
+                            <span class="material-symbols-outlined text-tertiary text-3xl" data-icon="insights">insights</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-4">@item.Title</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">@item.Description</p>
+                    </div>
+                    <a class="font-label-caps text-label-caps text-tertiary flex items-center gap-2 mt-auto" href="#">
+                        Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+                    </a>
                 </div>
-                <h3>@item.Title</h3>
-                <p>@item.Description</p>
+            }
+        }
+        else
+        {
+            <div class="col-span-full glass-card rounded-xl p-8 text-center">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-4">No Services Yet</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-6">Start by adding your first service to the platform.</p>
+                <a href="/ProvidedServices/Create" class="bloom-button px-8 py-3 rounded-full text-white inline-block font-label-caps">ADD SERVICE</a>
             </div>
         }
+
     </div>
-}
-else
-{
-    <div class="empty-state">
-        <span class="floating-emoji">🚀</span>
-        <h3>Buralar Çok Issız...</h3>
-        <p>Henüz bir hizmet eklenmemiş. İlk hizmeti ekleyerek bu sayfayı canlandırın!</p>
-        <a href="/ProvidedServices/Create" class="btn-add">✨ İlk Hizmeti Ekle</a>
+</section>
+
+<section class="py-20 border-y border-outline-variant/10 overflow-hidden bg-surface-container-lowest">
+    <div class="flex whitespace-nowrap animate-marquee">
+        <div class="flex items-center gap-20 px-10">
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Innovation</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Identity</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Digital Prestige</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Motion</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Strategy</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Fluidity</span>
+        </div>
+        <div class="flex items-center gap-20 px-10">
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Innovation</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Identity</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Digital Prestige</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Motion</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase italic">Strategy</span>
+            <span class="font-display-hero text-headline-lg opacity-10 uppercase">Fluidity</span>
+        </div>
     </div>
-}
+</section>
+
+<section class="px-margin-mobile md:px-margin-tablet lg:px-margin-desktop max-w-container-max mx-auto py-section-gap">
+    <div class="relative overflow-hidden rounded-3xl p-12 md:p-24 bg-surface-container-low group">
+        <div class="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+            <img alt="Future Tech" class="w-full h-full object-cover" data-alt="An abstract high-tech digital environment with glowing geometric shapes and fluid neon blue lines moving through a dark, multidimensional space. The lighting is dramatic with intense cyan and purple blooms, creating a futuristic and premium digital prestige aesthetic. The composition is dynamic and wide-angle, suggesting a sense of endless technological advancement and artistic motion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUaJZcOGNLzemkWVT6qhigqf50cCI95MUqudLtbg6qRjUS9eexfE9RS2LVgtRobYxHAlXLhNMFhmTW8tNqUjrYFYyq5PNGqj_1TT92C2VkvnEmTr424TDusAB3tXk-jqSzNMqX6OuQgrOSPehCLSm_WmbQXV65Zd0kNDMa2Zpqlm0ofSAr0QQjVqg6E3VkfWg9GUrvTvWEzqu1kHoSPezRXNV68I9qMhkCqmmZ1M0nEkw8SURFZuSQfZSxjPDfyQtRrMDbDbmTgNdz"/>
+        </div>
+        <div class="relative z-10 max-w-2xl">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Ready to define the future?</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-12">Join the elite brands shaping the next generation of digital culture. Let's create something immortal.</p>
+            <button class="bloom-button px-10 py-5 rounded-full font-label-caps text-label-caps text-white flex items-center gap-4">
+                START A PROJECT <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+            </button>
+        </div>
+    </div>
+</section>

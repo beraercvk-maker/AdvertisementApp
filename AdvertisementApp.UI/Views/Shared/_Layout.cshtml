@@ -1,85 +1,208 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reklam Uygulaması</title>
-    <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f8f9fa;
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh;
-        }
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Services | KINETIC NOIR</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Space+Grotesk:wght@600&family=Inter:wght@400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-        /* --- NAVBAR TASARIMI (MINT GROWTH) --- */
-        .navbar { 
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
-            padding: 15px 40px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.2);
-        }
-        .navbar-brand {
-            color: white;
-            font-size: 1.5em;
-            font-weight: 800;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        .navbar-links a { 
-            color: rgba(255,255,255,0.9); 
-            text-decoration: none; 
-            margin-left: 15px; 
-            font-weight: 600; 
-            padding: 10px 20px;
-            border-radius: 25px;
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#191c1d",
+                    "on-secondary": "#480081",
+                    "on-error-container": "#ffdad6",
+                    "on-background": "#e1e3e4",
+                    "tertiary": "#00dddd",
+                    "inverse-primary": "#5f5e5e",
+                    "surface-variant": "#323536",
+                    "on-secondary-fixed-variant": "#6700b5",
+                    "inverse-surface": "#e1e3e4",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-surface-variant": "#c4c7c7",
+                    "surface-bright": "#373a3b",
+                    "on-primary": "#313030",
+                    "error": "#ffb4ab",
+                    "background": "#111415",
+                    "secondary": "#dcb8ff",
+                    "on-primary-container": "#7e7d7d",
+                    "on-tertiary-container": "#008c8c",
+                    "primary": "#c8c6c5",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#002020",
+                    "tertiary-container": "#001515",
+                    "primary-fixed": "#e5e2e1",
+                    "secondary-fixed": "#efdbff",
+                    "on-tertiary-fixed-variant": "#004f4f",
+                    "surface-dim": "#111415",
+                    "secondary-container": "#7701d0",
+                    "on-secondary-container": "#dcb7ff",
+                    "outline-variant": "#444748",
+                    "surface-container-lowest": "#0c0f10",
+                    "surface": "#111415",
+                    "surface-container": "#1d2021",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-secondary-fixed": "#2c0051",
+                    "tertiary-fixed": "#00fbfb",
+                    "primary-container": "#121212",
+                    "surface-container-high": "#282a2b",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-tint": "#c8c6c5",
+                    "outline": "#8e9192",
+                    "tertiary-fixed-dim": "#00dddd",
+                    "surface-container-highest": "#323536",
+                    "secondary-fixed-dim": "#dcb8ff",
+                    "on-surface": "#e1e3e4",
+                    "on-tertiary": "#003737",
+                    "inverse-on-surface": "#2e3132"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "margin-tablet": "40px",
+                    "gutter": "32px",
+                    "margin-mobile": "20px",
+                    "section-gap": "160px",
+                    "unit": "8px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "label-caps": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-hero": ["Montserrat"],
+                    "headline-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "130%", "fontWeight": "600"}],
+                    "label-caps": ["14px", {"lineHeight": "100%", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "150%", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["42px", {"lineHeight": "115%", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "160%", "fontWeight": "400"}],
+                    "display-hero": ["120px", {"lineHeight": "110%", "letterSpacing": "0.05em", "fontWeight": "900"}],
+                    "headline-lg": ["64px", {"lineHeight": "120%", "letterSpacing": "0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        .navbar-links a:hover { 
-            color: #11998e; 
-            background-color: white; 
-            box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(0, 221, 221, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(0, 221, 221, 0.15);
         }
-
-        .container { 
-            padding: 40px 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            flex: 1;
-            width: 100%;
-            box-sizing: border-box;
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(119, 1, 208, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(0, 221, 221, 0.15) 0px, transparent 50%);
         }
-
-        .footer { 
-            background-color: #2c3e50;
-            color: #ecf0f1; 
-            text-align: center; 
-            padding: 20px; 
+        .bloom-button {
+            background: linear-gradient(135deg, #7701d0 0%, #00dddd 100%);
+            transition: all 0.3s ease;
+        }
+        .bloom-button:hover {
+            box-shadow: 0 0 20px rgba(0, 221, 221, 0.5);
+            transform: scale(1.05);
+        }
+        @@keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
-<body>
+<body class="bg-background text-on-background selection:bg-tertiary selection:text-on-tertiary overflow-x-hidden">
 
-    <div class="navbar">
-        <a href="/" class="navbar-brand">AppLogo✨</a>
-        <div class="navbar-links">
-            <a href="/">Ana Sayfa</a>
-            <a href="/ProvidedServices/Create">Hizmet Ekle</a>
-        </div>
-    </div>
+    <header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_0_20px_rgba(0,221,221,0.1)]">
+        <nav class="flex justify-between items-center px-margin-mobile md:px-margin-tablet lg:px-margin-desktop py-6 max-w-container-max mx-auto">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary" data-icon="bubble_chart">bubble_chart</span>
+                <span class="font-headline-md text-headline-md font-black tracking-tighter text-on-surface dark:text-on-surface">KINETIC NOIR</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+       asp-controller="Home" asp-action="Index">Work</a>
+    
+    <a class="font-label-caps text-label-caps text-tertiary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-tertiary" 
+       asp-controller="Home" asp-action="Index">Services</a>
+    
+    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+       href="#">Vision</a>
+    
+    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+       asp-controller="Home" asp-action="HumanResources">Human Resources</a>
+</div>
 
-    <div class="container">
+<a asp-controller="ProvidedServices" asp-action="Create" class="font-label-caps text-label-caps text-tertiary hover:scale-105 transition-transform duration-300 border border-tertiary/30 px-6 py-2 rounded-full cursor-pointer">
+    LET'S TALK
+</a>
+            
+        </nav>
+    </header>
+
+    <main class="mesh-gradient pt-[120px] flex-grow">
         @RenderBody()
-    </div>
+    </main>
 
-    <div class="footer">
-        <p style="margin: 0;">&copy; 2026 Advertisement App. Tüm Hakları Saklıdır.</p>
-    </div>
+    <footer class="w-full py-section-gap bg-surface-container-lowest border-t border-outline-variant/10 mt-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between px-margin-mobile md:px-margin-tablet lg:px-margin-desktop gap-gutter max-w-container-max mx-auto">
+            <div>
+                <p class="font-headline-lg text-headline-lg font-bold text-on-surface mb-4">KINETIC NOIR</p>
+                <p class="font-body-md text-body-md text-on-surface-variant">© 2024 KINETIC NOIR. ART IN MOTION.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="font-label-caps text-label-caps text-secondary">EXPLORE</h4>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Work</a>
+                <a class="font-body-md text-body-md text-tertiary" href="#">Services</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Vision</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Human Resources</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Contact</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="font-label-caps text-label-caps text-secondary">SOCIAL</h4>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Instagram</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">LinkedIn</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Behance</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Twitter</a>
+            </div>
+            <div class="max-w-[300px]">
+                <h4 class="font-label-caps text-label-caps text-secondary mb-4">NEWSLETTER</h4>
+                <div class="flex border-b border-outline-variant py-2 focus-within:ring-2 ring-tertiary transition-all">
+                    <input class="bg-transparent border-none focus:ring-0 text-on-surface w-full font-body-md" placeholder="Email Address" type="email"/>
+                    <button class="material-symbols-outlined text-tertiary" data-icon="north_east">north_east</button>
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
