@@ -26,3 +26,8 @@ namespace AdvertisementApp.Business.Extensions
         }
     }
 }
+
+
+
+
+//FluentValidation'ın karmaşık hata listesini alıp, bizim kendi anladığımız o sade CustomValidationError listesine çevirmek. Yani bu dosya sadece "Hata Çevirmeni" olarak çalışıyor.

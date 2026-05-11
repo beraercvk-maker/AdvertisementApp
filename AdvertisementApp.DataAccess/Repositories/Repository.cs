@@ -1,3 +1,4 @@
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.Interfaces;
 using AdvertisementApp.Entities;
@@ -34,6 +35,13 @@ namespace AdvertisementApp.DataAccess.Repositories
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
             return await _context.Set<T>().Where(filter).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            return orderByType == OrderByType.ASC 
+                ? await _context.Set<T>().Where(filter).OrderBy(selector).AsNoTracking().ToListAsync() 
+                : await _context.Set<T>().Where(filter).OrderByDescending(selector).AsNoTracking().ToListAsync();
         }
 
         // Primary Key (Id) değerine göre tek bir veri bulur

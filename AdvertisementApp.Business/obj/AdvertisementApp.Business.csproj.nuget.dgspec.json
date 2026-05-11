@@ -185,6 +185,9 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Common\\AdvertisementApp.Common.csproj": {
+                "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Common\\AdvertisementApp.Common.csproj"
+              },
               "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Entities\\AdvertisementApp.Entities.csproj": {
                 "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Entities\\AdvertisementApp.Entities.csproj"
               }

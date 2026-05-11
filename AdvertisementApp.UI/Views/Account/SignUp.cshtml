@@ -1,0 +1,109 @@
+@model AdvertisementApp.UI.Models.UserCreateModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Layout dosyanın adından emin ol
+    ViewData["Title"] = "Yeni Kayıt";
+}
+
+@* Sayfa genelini ortalayan ana kapsayıcı *@
+<div class="min-h-[80vh] flex items-center justify-center py-10 px-4">
+    
+    @* Glassmorphism Kart Tasarımı *@
+    <div class="glass-card w-full max-w-lg rounded-[2rem] p-8 md:p-12 border border-white/20 shadow-2xl backdrop-blur-md bg-white/5">
+        
+        @* Başlık Bölümü *@
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-black text-white uppercase tracking-tighter mb-2">
+                Bize <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Katıl</span>
+            </h2>
+            <p class="text-gray-400 text-sm font-medium">Hayalindeki kariyere bir adım kaldı.</p>
+        </div>
+
+        @* Kayıt Formu *@
+        <form asp-action="SignUp" asp-controller="Account" method="post" class="space-y-4">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @* Ad *@
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Ad</label>
+                    <input asp-for="Firstname" placeholder="Örn: Ahmet" 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+                    <span asp-validation-for="Firstname" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+                </div>
+
+                @* Soyad *@
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Soyad</label>
+                    <input asp-for="Surname" placeholder="Örn: Yılmaz" 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+                    <span asp-validation-for="Surname" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+                </div>
+            </div>
+
+            @* Kullanıcı Adı *@
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Kullanıcı Adı</label>
+                <input asp-for="Username" placeholder="kullaniciadi" 
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+                <span asp-validation-for="Username" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+            </div>
+            @* Email *@
+<div class="space-y-1">
+    <label class="text-xs font-bold text-gray-500 ml-2 uppercase">E-Posta Adresi</label>
+    <input asp-for="Email" type="email" placeholder="ornek@mail.com" 
+           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+    <span asp-validation-for="Email" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @* Telefon *@
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Telefon</label>
+                    <input asp-for="PhoneNumber" placeholder="0555..." 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+                    <span asp-validation-for="PhoneNumber" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+                </div>
+
+                @* Cinsiyet - İŞTE KRİTİK DROPDOWN BURASI *@
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Cinsiyet</label>
+                    <select asp-for="GenderId" asp-items="Model.Genders" 
+                            class="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-all">
+                        <option value="">Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="GenderId" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+                </div>
+            </div>
+
+            @* Şifre *@
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-gray-500 ml-2 uppercase">Şifre</label>
+                <input asp-for="Password" type="password" placeholder="••••••••" 
+                       class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-all" />
+                <span asp-validation-for="Password" class="text-red-500 text-[10px] ml-2 font-medium"></span>
+            </div>
+
+            @* Kayıt Butonu *@
+            <div class="pt-4">
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/20 uppercase tracking-widest text-sm">
+                    Hesap Oluştur
+                </button>
+            </div>
+        </form>
+
+        @* Alt Bilgi *@
+        <div class="mt-8 text-center">
+            <p class="text-gray-500 text-xs">
+                Zaten bir hesabın var mı? <a href="#" class="text-blue-400 font-bold hover:underline">Giriş Yap</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+@* İstemci taraflı validasyon (hata mesajlarının anlık çıkması için) *@
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

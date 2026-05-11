@@ -1,3 +1,4 @@
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace AdvertisementApp.DataAccess.Interfaces
         // 1. Veri Okuma Metotları (Select işlemleri)
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter); // Şartlı listeleme (Örn: Sadece aktif olanlar)
+        Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);
         Task<T> FindAsync(object id); // Id'ye göre tek bir kayıt bul
         Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter, bool asNoTracking = false); // Şarta göre tek kayıt bul
 

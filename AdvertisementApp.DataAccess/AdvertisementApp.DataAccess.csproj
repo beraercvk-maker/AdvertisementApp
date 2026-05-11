@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AdvertisementApp.Entities\AdvertisementApp.Entities.csproj" />
+    <ProjectReference Include="..\AdvertisementApp.Common\AdvertisementApp.Common.csproj" />
   </ItemGroup>
 
 </Project>
