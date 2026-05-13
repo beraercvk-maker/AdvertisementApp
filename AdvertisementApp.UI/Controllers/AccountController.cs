@@ -5,6 +5,10 @@ using AdvertisementApp.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering; 
 using System.Threading.Tasks; 
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using AutoMapper; // Mapper için gerekli
 
 namespace AdvertisementApp.UI.Controllers
 {
@@ -15,11 +19,14 @@ namespace AdvertisementApp.UI.Controllers
         // 1. AppUser servisini buraya ekledik!
         private readonly IAppUserService _appUserService; 
 
+        private readonly IMapper _mapper; // AutoMapper için gerekli
+
         // 2. Constructor içine AppUser servisini de istedik
-        public AccountController(IGenderService genderService, IAppUserService appUserService)
+        public AccountController(IGenderService genderService, IAppUserService appUserService, IMapper mapper)
         {
             _genderService = genderService;
             _appUserService = appUserService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,15 +38,12 @@ namespace AdvertisementApp.UI.Controllers
             return View(model);
         }
  
-        [HttpPost]
+[HttpPost]
 public async Task<IActionResult> SignUp(UserCreateModel model)
 {
     // 1. HTML formundan geri dönmeyecek olan özellikleri "Hata" olarak algılamaması için doğrulama dışı bırakıyoruz.
     ModelState.Remove("Genders"); 
     
-    // Eğer UserCreateModel içinde "ConfirmPassword" varsa ama HTML formuna eklemediysen onu da buraya yazmalısın:
-    // ModelState.Remove("ConfirmPassword");
-
     // 2. Artık IsValid true dönecektir
     if (ModelState.IsValid)
     {
@@ -48,13 +52,14 @@ public async Task<IActionResult> SignUp(UserCreateModel model)
             Firstname = model.Firstname,
             Surname = model.Surname,
             Username = model.Username,
-            Password = model.Password, // Şifreyi ileride hash'leyeceğiz (şifreleyeceğiz), şimdilik düz kaydediyoruz
+            Password = AdvertisementApp.Common.Helpers.PasswordHelper.HashPassword(model.Password),
             PhoneNumber = model.PhoneNumber,
             GenderId = model.GenderId,
             Email = model.Email
         };
 
-        var response = await _appUserService.CreateAsync(dto);
+        // İŞTE DEĞİŞEN SATIR BURASI: Artık rol ID'si ile birlikte gönderiyoruz!
+        var response = await _appUserService.CreateWithRoleAsync(dto, RoleType.Member.GetHashCode()); // RoleType enum'undan Member'ı seçiyoruz ve int değerini gönderiyoruz.
 
         if (response.ResponseType == AdvertisementApp.Common.ResponseType.Success)
         {
@@ -74,5 +79,66 @@ public async Task<IActionResult> SignUp(UserCreateModel model)
     
     return View(model);
 }
+#region Giriş Yap (SignIn) İşlemleri
+
+[HttpGet]
+public IActionResult SignIn()
+{
+    // Ekrana sadece boş giriş formunu (View) gönderir
+    return View();
+}
+
+[HttpPost]
+public async Task<IActionResult> SignIn(UserLoginModel model)
+{
+    if (ModelState.IsValid)
+    {
+        // 1. Model'i DTO'ya çevir (Kargo kutusunu hazırla)
+        var dto = _mapper.Map<AppUserLoginDto>(model);
+
+        // 2. Business'a sor: Böyle biri var mı? Şifresi doğru mu?
+        var response = await _appUserService.CheckUserAsync(dto);
+
+        if (response.ResponseType == AdvertisementApp.Common.ResponseType.Success)
+        {
+            // --- KULLANICI DOĞRULANDI! YAKA KARTINI (COOKIE) BASIYORUZ ---
+
+            // Claim: Kullanıcıya ait özellikleri (Kimlik No, Rol vb.) tuttuğumuz liste.
+            var claims = new List<Claim>
+            {
+                // Sistemdeki kullanıcının Id'sini "NameIdentifier" olarak yaka kartına yazıyoruz
+                new Claim(ClaimTypes.NameIdentifier, response.Data.Id.ToString())
+            };
+
+            // Yaka kartının geçerli olacağı şema (Program.cs'te belirlediğimiz Cookie tabanlı şema)
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Çerez (Cookie) ayarları
+            var authProperties = new AuthenticationProperties
+            {
+                // Eğer "Beni Hatırla" seçildiyse çerez tarayıcı kapanınca silinmez, kalıcı olur.
+                IsPersistent = model.RememberMe 
+            };
+
+            // VEEE KAPIYI AÇIYORUZ! Kullanıcıyı sisteme dahil et (Giriş yap)
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
+            // Giriş başarılı olduktan sonra anasayfaya yönlendir
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Eğer Business katmanından "NotFound" dönerse (Kullanıcı veya şifre yanlış)
+        ModelState.AddModelError("", response.Message); 
+    }
+
+    // Model validasyonundan geçemezse veya hata alırsak aynı sayfayı hata mesajlarıyla geri dön
+    return View(model);
+}
+
+#endregion
+
     }
 }

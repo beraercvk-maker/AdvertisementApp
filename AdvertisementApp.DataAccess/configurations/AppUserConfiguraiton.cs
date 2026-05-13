@@ -15,7 +15,7 @@ namespace AdvertisementApp.DataAccess.Configurations
 
             // Şifre ayarları
             builder.Property(x => x.Password)
-                   .HasMaxLength(50)
+                   .HasMaxLength(64)
                    .IsRequired();
 
             // Telefon numarası ayarları
