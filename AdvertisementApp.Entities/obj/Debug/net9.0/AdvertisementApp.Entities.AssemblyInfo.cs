@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdvertisementApp.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0b98f627353e25194edf1a7365855abaa02e7ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+369a01c86fb521d12d62d52bd49ef2a085ead860")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdvertisementApp.Entities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdvertisementApp.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,6 +15,6 @@ namespace AdvertisementApp.UI.Models
 
         public DateTime? EndDate { get; set; }
         public int WorkExperience { get; set; }
-        public IFormFile CvFile{ get; set; }
+        public IFormFile? CvFile { get; set; }
     }
 }

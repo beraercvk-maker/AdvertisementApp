@@ -26,9 +26,10 @@
     {
 
    
-    @foreach (var   item in Model)
+    @foreach (var item in Model)
     {
-        <div class="glass-card rounded-xl p-8 group cursor-pointer flex flex-col justify-between h-[300px]">
+        <a asp-controller="Advertisement" asp-action="Send" asp-route-AdvertisementId="@item.Id"
+           class="glass-card rounded-xl p-8 group cursor-pointer flex flex-col justify-between h-[300px] block hover:border-tertiary/50 transition-all duration-300">
             <div>
                 <div class="flex justify-between items-center mb-6">
                     <span class="font-label-caps text-[11px] text-tertiary border border-tertiary/30 px-3 py-1 rounded-full tracking-widest">
@@ -47,7 +48,7 @@
             <p class="font-label-caps text-xs text-outline-variant mt-4">
                 EKLENME TARİHİ: @item.CreatedDate.ToString("dd MMM yyyy")
             </p>
-        </div>
+        </a>
     }
 
      }

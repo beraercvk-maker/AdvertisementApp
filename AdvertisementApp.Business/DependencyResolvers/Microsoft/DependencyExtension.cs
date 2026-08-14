@@ -37,7 +37,8 @@ services.AddAutoMapper(cfg => { }, typeof(DependencyExtension).Assembly);
             services.AddScoped<IProvidedServiceService, ProvidedServiceService>(); 
             services.AddScoped<IAdvertisementService, AdvertisementService>();
             services.AddScoped<IAppUserService, AppUserService>();
-            services.AddScoped<IGenderService, GenderService>();    
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IAdvertisementUserService, AdvertisementUserService>();    
         }    
     }
 }

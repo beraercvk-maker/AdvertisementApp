@@ -11,7 +11,7 @@ namespace AdvertisementApp.DataAccess.Configurations
            builder.Property(x => x.Definition).HasMaxLength(300).IsRequired(); // Rolün adı (Örn: "Admin", "User") alanı için kısıtlamalar eklenir.
            builder.HasData(
                 new AppRole { Id = 1, Definition = "Admin" }, // Veritabanına başlangıçta eklenmesi gereken roller tanımlanır.
-                new AppRole { Id = 2, Definition = "User" }
+                new AppRole { Id = 2, Definition = "Member" }
             );
         }
     }

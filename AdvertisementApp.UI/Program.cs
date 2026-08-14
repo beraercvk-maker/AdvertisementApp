@@ -20,15 +20,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         opt.Cookie.Name = "AdvertisementAppCookie"; 
         opt.Cookie.HttpOnly = true; 
-        opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict; 
+        opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax; 
         opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest; 
         opt.ExpireTimeSpan = TimeSpan.FromDays(20); 
+        opt.SlidingExpiration = true;
 
         opt.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/SignIn"); 
         opt.LogoutPath = new Microsoft.AspNetCore.Http.PathString("/Account/LogOut"); 
         opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied"); 
     });
 
+builder.Services.AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
