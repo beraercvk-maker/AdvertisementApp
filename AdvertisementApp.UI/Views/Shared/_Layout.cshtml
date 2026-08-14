@@ -143,27 +143,70 @@
 
     <header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_0_20px_rgba(0,221,221,0.1)]">
         <nav class="flex justify-between items-center px-margin-mobile md:px-margin-tablet lg:px-margin-desktop py-6 max-w-container-max mx-auto">
-            <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-tertiary" data-icon="bubble_chart">bubble_chart</span>
-                <span class="font-headline-md text-headline-md font-black tracking-tighter text-on-surface dark:text-on-surface">KINETIC NOIR</span>
-            </div>
-            <div class="hidden md:flex items-center gap-10">
-    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
-       asp-controller="Home" asp-action="Index">Work</a>
     
-    <a class="font-label-caps text-label-caps text-tertiary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-tertiary" 
-       asp-controller="Home" asp-action="Index">Services</a>
+    @* --- LOGO KISMI --- *@
+    <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-tertiary" data-icon="bubble_chart">bubble_chart</span>
+        <span class="font-headline-md text-headline-md font-black tracking-tighter text-on-surface dark:text-on-surface">KINETIC NOIR</span>
+    </div>
     
-    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
-       href="#">Vision</a>
-    
-    <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
-       asp-controller="Home" asp-action="HumanResources">Human Resources</a>
-</div>
+    @* --- ORTA MENÜ LİNKLERİ --- *@
+    <div class="hidden md:flex items-center gap-10">
+        <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+           asp-controller="Home" asp-action="Index">Work</a>
+        
+        <a class="font-label-caps text-label-caps text-tertiary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-tertiary" 
+           asp-controller="Home" asp-action="Index">Services</a>
+        
+        <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+           href="#">Vision</a>
+        
+        <a class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300" 
+           asp-controller="Home" asp-action="HumanResources">Human Resources</a>
+    </div>
 
-<a asp-controller="Account" asp-action="SignIn" class="font-label-caps text-label-caps text-tertiary hover:scale-105 transition-transform duration-300 border border-tertiary/30 px-6 py-2 rounded-full cursor-pointer">
-    Giriş Yap
-</a>
+    @* --- KULLANICI İŞLEMLERİ (GİRİŞ/ÇIKIŞ/KAYIT DİNAMİK ALANI) --- *@
+    <div class="flex items-center gap-4">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            @* YETKİ KONTROLLERİ BAŞLIYOR *@
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="Admin" asp-action="Index" 
+                   class="font-label-caps text-label-caps text-tertiary hover:text-white transition-colors duration-300 hidden sm:block border-r border-outline-variant/30 pr-4 mr-1">
+                    Yönetim Paneli
+                </a>
+            }
+            else if (User.IsInRole("Member"))
+            {
+                <a href="#" 
+                   class="font-label-caps text-label-caps text-tertiary hover:text-white transition-colors duration-300 hidden sm:block border-r border-outline-variant/30 pr-4 mr-1">
+                    Başvurularım
+                </a>
+            }
+
+            @* GİRİŞ YAPMIŞ HER KULLANICI İÇİN ORTAK KISIM *@
+            <span class="text-on-surface-variant font-label-caps text-[11px] hidden sm:block tracking-widest">
+                HOŞ GELDİNİZ
+            </span>
+            <a href="/Account/LogOut" 
+               class="font-label-caps text-label-caps text-error hover:text-error-container hover:scale-105 transition-all duration-300 border border-error/30 px-6 py-2 rounded-full cursor-pointer">
+                Çıkış Yap
+            </a>
+        }
+        else
+        {
+            @* ZİYARETÇİ EKRANI *@
+            <a asp-controller="Account" asp-action="SignUp" 
+               class="font-label-caps text-label-caps text-on-surface hover:text-tertiary transition-colors duration-300 hidden sm:block">
+                Kayıt Ol
+            </a>
+            <a asp-controller="Account" asp-action="SignIn" 
+               class="font-label-caps text-label-caps text-tertiary hover:scale-105 transition-transform duration-300 border border-tertiary/30 px-6 py-2 rounded-full cursor-pointer bg-tertiary/5 hover:bg-tertiary/10">
+                Giriş Yap
+            </a>
+        }
+    </div>
             
         </nav>
     </header>

@@ -1,4 +1,5 @@
 using AdvertisementApp.Common;
+using AdvertisementApp.Dtos.AppRoleDtos;
 using AdvertisementApp.Dtos.AppUserDtos;
 using AdvertisementApp.Entities;
 using System.Threading.Tasks;
@@ -10,5 +11,7 @@ namespace AdvertisementApp.Business.Interfaces
         // İşte eksik olan satırımız (Sözleşmeye ekliyoruz):
         Task<IResponse<AppUserCreateDto>> CreateWithRoleAsync(AppUserCreateDto dto, int roleId);
         Task<IResponse<AppUserListDto>> CheckUserAsync(AppUserLoginDto dto);
+
+        Task<IResponse<List<AppRoleListDto>>> GetRolesByUserIdAsync(int userId); // Kullanıcının rollerini dönen yeni metot
     }
 }

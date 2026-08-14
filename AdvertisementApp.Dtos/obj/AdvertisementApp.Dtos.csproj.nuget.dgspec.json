@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {}
+    "C:\\Users\\BERA\\OneDrive\\Masaüstü\\projeler\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {
+    "C:\\Users\\BERA\\OneDrive\\Masaüstü\\projeler\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
+        "projectUniqueName": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\projeler\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
         "projectName": "AdvertisementApp.Dtos",
-        "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
+        "projectPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\projeler\\AdvertisementApp\\AdvertisementApp.Dtos\\AdvertisementApp.Dtos.csproj",
         "packagesPath": "C:\\Users\\BERA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\AdvertisementApp\\AdvertisementApp.Dtos\\obj\\",
+        "outputPath": "C:\\Users\\BERA\\OneDrive\\Masaüstü\\projeler\\AdvertisementApp\\AdvertisementApp.Dtos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

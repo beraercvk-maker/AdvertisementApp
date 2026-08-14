@@ -1,0 +1,74 @@
+@using AdvertisementApp.UI.Models
+@model AdvertisementAppUserCreateModel
+@{
+    ViewData["Title"] = "Başvuru Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop py-12">
+    <div class="max-w-2xl mx-auto glass-card p-8 md:p-12 rounded-2xl relative overflow-hidden mt-10">
+        
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-tertiary"></div>
+        
+        <div class="mb-8">
+            <span class="material-symbols-outlined text-tertiary text-4xl mb-4" data-icon="upload_file">upload_file</span>
+            <h1 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight mb-2">Başvuruyu Tamamla</h1>
+            <p class="font-body-md text-on-surface-variant">Lütfen aşağıdaki bilgileri eksiksiz doldurarak başvurunu ilet.</p>
+        </div>
+
+        @* DOSYA YÜKLEME DESTEĞİ İÇİN enctype="multipart/form-data" EKLENDİ *@
+        <form asp-controller="Advertisement" asp-action="Send" method="post" enctype="multipart/form-data" class="space-y-6">
+            
+            @* Arka plana gidecek gizli veriler *@
+            <input type="hidden" asp-for="AdvertisementId" />
+            <input type="hidden" asp-for="AppUserId" />
+            @* Eğer veritabanında "Başvurdu" durumunun Id'si 1 ise varsayılan olarak gönderebiliriz *@
+            <input type="hidden" asp-for="AdvertisementAppUserStatusId" value="1" />
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @* İş Tecrübesi *@
+                <div class="space-y-2">
+                    <label class="font-label-caps text-secondary block">İş Tecrübesi (Yıl)</label>
+                    <input type="number" asp-for="WorkExperience" min="0"
+                           class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-4 text-on-surface focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all outline-none font-body-md" />
+                </div>
+
+                @* Askerlik Durumu *@
+                <div class="space-y-2">
+                    <label class="font-label-caps text-secondary block">Askerlik Durumu</label>
+                    <select asp-for="MilitaryStatusId" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-4 text-on-surface focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all outline-none font-body-md">
+                        <option value="1">Yapıldı</option>
+                        <option value="2">Tecilli</option>
+                        <option value="3">Muaf</option>
+                    </select>
+                </div>
+            </div>
+
+            @* Tecil Bitiş Tarihi *@
+            <div class="space-y-2">
+                <label class="font-label-caps text-secondary block">Tecil Bitiş Tarihi (Varsa)</label>
+                <input type="date" asp-for="EndDate" 
+                       class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-4 text-on-surface focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all outline-none font-body-md" />
+            </div>
+
+            @* CV Dosyası Yükleme Alanı *@
+            <div class="space-y-2">
+                <label class="font-label-caps text-secondary block">CV Yükle (PDF/DOCX)</label>
+                <input type="file" asp-for="CvFile" accept=".pdf,.doc,.docx"
+                       class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-3 text-on-surface focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all outline-none font-body-md file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-tertiary/10 file:text-tertiary hover:file:bg-tertiary/20" />
+            </div>
+
+            <div class="pt-6 flex justify-end gap-4 items-center">
+                 <a asp-controller="Advertisement" asp-action="Index" 
+                    class="px-6 py-3 rounded-full font-label-caps text-on-surface border border-outline-variant/30 hover:bg-surface-container-high transition-colors">
+                     İptal
+                 </a>
+                 <button type="submit" 
+                         class="bloom-button px-8 py-3 rounded-full font-label-caps text-tertiary-container font-bold flex items-center gap-2">
+                     Başvuruyu Gönder
+                     <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+                 </button>
+            </div>
+        </form>
+    </div>
+</div>

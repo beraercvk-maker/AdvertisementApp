@@ -17,53 +17,65 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AdvertisementApp.UI
 build_property.RootNamespace = AdvertisementApp.UI
-build_property.ProjectDir = C:\Users\BERA\OneDrive\Masaüstü\AdvertisementApp\AdvertisementApp.UI\
+build_property.ProjectDir = C:\Users\BERA\OneDrive\Masaüstü\projeler\AdvertisementApp\AdvertisementApp.UI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\BERA\OneDrive\Masaüstü\AdvertisementApp\AdvertisementApp.UI
+build_property.MSBuildProjectDirectory = C:\Users\BERA\OneDrive\Masaüstü\projeler\AdvertisementApp\AdvertisementApp.UI
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Account/SignIn.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Account/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Account/SignUp.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Account/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Home/HumanResources.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Advertisement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlbWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Advertisement/Send.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlbWVudFxTZW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Home/HumanResources.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIdW1hblJlc291cmNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Home/Index.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Home/Privacy.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Shared/Error.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Home/Send.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/_ViewImports.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/_ViewStart.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/BERA/OneDrive/Masaüstü/AdvertisementApp/AdvertisementApp.UI/Views/Shared/_Layout.cshtml]
+[C:/Users/BERA/OneDrive/Masaüstü/projeler/AdvertisementApp/AdvertisementApp.UI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-0i4gd4lrue

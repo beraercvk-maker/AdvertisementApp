@@ -93,52 +93,64 @@ public async Task<IActionResult> SignIn(UserLoginModel model)
 {
     if (ModelState.IsValid)
     {
-        // 1. Model'i DTO'ya çevir (Kargo kutusunu hazırla)
+        // 1. Kargo kutusunu (DTO) hazırla
         var dto = _mapper.Map<AppUserLoginDto>(model);
 
-        // 2. Business'a sor: Böyle biri var mı? Şifresi doğru mu?
+        // 2. Kullanıcı adı ve şifre doğru mu?
         var response = await _appUserService.CheckUserAsync(dto);
 
         if (response.ResponseType == AdvertisementApp.Common.ResponseType.Success)
         {
-            // --- KULLANICI DOĞRULANDI! YAKA KARTINI (COOKIE) BASIYORUZ ---
+            // --- EKLENEN YENİ KISIM: ROLLERİ ÇEKİYORUZ ---
+            // Başarılı giriş yapan kullanıcının Id'si ile rollerini veritabanından getir
+            var roleResponse = await _appUserService.GetRolesByUserIdAsync(response.Data.Id);
 
-            // Claim: Kullanıcıya ait özellikleri (Kimlik No, Rol vb.) tuttuğumuz liste.
+            // Temel yaka kartı bilgileri (Şimdilik sadece Id var)
             var claims = new List<Claim>
             {
-                // Sistemdeki kullanıcının Id'sini "NameIdentifier" olarak yaka kartına yazıyoruz
                 new Claim(ClaimTypes.NameIdentifier, response.Data.Id.ToString())
             };
 
-            // Yaka kartının geçerli olacağı şema (Program.cs'te belirlediğimiz Cookie tabanlı şema)
+            // Eğer kullanıcının rolleri başarıyla geldiyse, her birini yaka kartına "Rol" olarak ekle!
+            if (roleResponse.ResponseType == AdvertisementApp.Common.ResponseType.Success)
+            {
+                foreach (var role in roleResponse.Data)
+                {
+                    // İşte sihri yapan kod bu! Sistemin [Authorize(Roles="Admin")] özelliğini tetikleyen yer.
+                    claims.Add(new Claim(ClaimTypes.Role, role.Definition)); 
+                }
+            }
+            // ---------------------------------------------
+
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            // Çerez (Cookie) ayarları
             var authProperties = new AuthenticationProperties
             {
-                // Eğer "Beni Hatırla" seçildiyse çerez tarayıcı kapanınca silinmez, kalıcı olur.
                 IsPersistent = model.RememberMe 
             };
 
-            // VEEE KAPIYI AÇIYORUZ! Kullanıcıyı sisteme dahil et (Giriş yap)
+            // Kapıyı aç, yaka kartını ver ve içeri al!
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
-            // Giriş başarılı olduktan sonra anasayfaya yönlendir
             return RedirectToAction("Index", "Home");
         }
 
-        // Eğer Business katmanından "NotFound" dönerse (Kullanıcı veya şifre yanlış)
+        // Kullanıcı veya şifre yanlışsa
         ModelState.AddModelError("", response.Message); 
     }
 
-    // Model validasyonundan geçemezse veya hata alırsak aynı sayfayı hata mesajlarıyla geri dön
     return View(model);
 }
 
 #endregion
-
+        public async Task<IActionResult> LogOut()
+        {
+            // Kullanıcıyı sistemden at (Çıkış yap)
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

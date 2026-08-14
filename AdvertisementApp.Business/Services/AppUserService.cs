@@ -7,7 +7,9 @@ using AdvertisementApp.Entities;
 using AutoMapper;
 using FluentValidation;
 using System.Threading.Tasks;
-
+using System.Collections.Generic; // (List<> kullanacağımız için eğer yoksa bunu da ekle)
+using System.Linq;
+using AdvertisementApp.Dtos.AppRoleDtos; // (.Any() metodunu kullanabilmek için)
 namespace AdvertisementApp.Business.Services
 {
     public class AppUserService : Service<AppUserCreateDto, AppUserUpdateDto, AppUserListDto, AppUser>, IAppUserService
@@ -84,5 +86,26 @@ namespace AdvertisementApp.Business.Services
     // Validasyon hatası varsa (Örn: şifreyi boş girdiyse) hataları döndür
 return new Response<AppUserListDto>(ResponseType.ValidationError, new AppUserListDto(), validationResult.ConvertToCustomValidationError());
 }
-    }
+
+// --- KULLANICININ ROLLERİNİ GETİREN METOT ---
+        public async Task<IResponse<List<AppRoleListDto>>> GetRolesByUserIdAsync(int userId)
+        {
+            // 1. Veritabanından Repository aracılığıyla Rolleri çekiyoruz.
+            // "AppUserRoles tablosunda bu userId'ye sahip olan rolleri getir" diyoruz.
+            var roles = await _uow.GetRepository<AppRole>()
+                .GetAllAsync(x => x.UserRole.Any(ur => ur.AppUserId == userId));
+
+            // 2. Eğer rol bulunamadıysa NotFound dönüyoruz
+            if (roles == null || !roles.Any())
+            {
+                return new Response<List<AppRoleListDto>>(ResponseType.NotFound, "Kullanıcıya ait rol bulunamadı.");
+            }
+
+            // 3. Bulunan rolleri (Entity), DTO'ya (Kargo kutusuna) çeviriyoruz
+            var dto = _mapper.Map<List<AppRoleListDto>>(roles);
+            
+            // 4. Başarılı olarak geriye döndürüyoruz
+            return new Response<List<AppRoleListDto>>(ResponseType.Success, dto);
+        }
+  }
 }
